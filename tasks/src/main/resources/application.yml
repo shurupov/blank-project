@@ -8,9 +8,9 @@ jwt:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/evanli
-    username: evanliuser
-    password: evanlipassword
+    url: jdbc:postgresql://localhost:5432/bp
+    username: bpuser
+    password: bppassword
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -29,9 +29,9 @@ spring:
 liquibase:
   enabled: true
   driver-class-name: org.postgresql.Driver
-  url: jdbc:postgresql://localhost:5432/evanli
-  user: evanliuser
-  password: evanlipassword
+  url: jdbc:postgresql://localhost:5432/bp
+  user: bpuser
+  password: bppassword
 
 springdoc.api-docs.path: /tasks/api-docs
 

@@ -1,11 +1,11 @@
 
 docker-build:
-	docker build -t eshurupov/evanli-tasks:1.0 -t eshurupov/evanli-tasks:latest .
+	docker build -t eshurupov/bp-tasks:1.0 -t eshurupov/bp-tasks:latest .
 
 docker-login:
 	docker login
 
 docker-push:
-	docker push --all-tags eshurupov/evanli-tasks
+	docker push --all-tags eshurupov/bp-tasks
 
 docker-build-push: docker-build docker-push

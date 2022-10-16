@@ -1,12 +1,12 @@
 version: "3"
 services:
-  evanli-postgres:
-    container_name: evanli-postgres-dev
+  bp-postgres:
+    container_name: bp-postgres-dev
     image: library/postgres:14.5
     environment:
-      POSTGRES_USER: evanliuser
-      POSTGRES_PASSWORD: evanlipassword
-      POSTGRES_DB: evanli
+      POSTGRES_USER: bpuser
+      POSTGRES_PASSWORD: bppassword
+      POSTGRES_DB: bp
     networks:
       - backend
     ports:
@@ -16,77 +16,53 @@ services:
     build:
       context: ./users
       dockerfile: ./DevDockerfile
-    container_name: evanli-users-dev
-    image: eshurupov/evanli-users:1.0-dev
+    container_name: bp-users-dev
+    image: eshurupov/bp-users:1.0-dev
     depends_on:
-      - evanli-postgres
+      - bp-postgres
     networks:
       - backend
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://evanli-postgres:5432/evanli
-      SPRING_DATASOURCE_USERNAME: evanliuser
-      SPRING_DATASOURCE_PASSWORD: evanlipassword
-      LIQUIBASE_URL: jdbc:postgresql://evanli-postgres:5432/evanli
-      LIQUIBASE_USER: evanliuser
-      LIQUIBASE_PASSWORD: evanlipassword
+      SPRING_DATASOURCE_URL: jdbc:postgresql://bp-postgres:5432/bp
+      SPRING_DATASOURCE_USERNAME: bpuser
+      SPRING_DATASOURCE_PASSWORD: bppassword
+      LIQUIBASE_URL: jdbc:postgresql://bp-postgres:5432/bp
+      LIQUIBASE_USER: bpuser
+      LIQUIBASE_PASSWORD: bppassword
     ports:
       - 8001:8001
       - 5001:5001
     volumes:
       - "./users/target:/opt/project"
 
-  wallets:
+  tasks:
     build:
-      context: ./wallets
+      context: ./tasks
       dockerfile: ./DevDockerfile
-    container_name: evanli-wallets-dev
-    image: eshurupov/evanli-wallets:1.0-dev
+    container_name: bp-tasks-dev
+    image: eshurupov/bp-tasks:1.0-dev
     depends_on:
-      - evanli-postgres
+      - bp-postgres
     networks:
       - backend
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://evanli-postgres:5432/evanli
-      SPRING_DATASOURCE_USERNAME: evanliuser
-      SPRING_DATASOURCE_PASSWORD: evanlipassword
-      LIQUIBASE_URL: jdbc:postgresql://evanli-postgres:5432/evanli
-      LIQUIBASE_USER: evanliuser
-      LIQUIBASE_PASSWORD: evanlipassword
+      SPRING_DATASOURCE_URL: jdbc:postgresql://bp-postgres:5432/bp
+      SPRING_DATASOURCE_USERNAME: bpuser
+      SPRING_DATASOURCE_PASSWORD: bppassword
+      LIQUIBASE_URL: jdbc:postgresql://bp-postgres:5432/bp
+      LIQUIBASE_USER: bpuser
+      LIQUIBASE_PASSWORD: bppassword
       AUTH_SERVER: http://users:8001/api/profile
     ports:
       - 8002:8002
       - 5002:5002
-    volumes:
-      - "./wallets/target:/opt/project"
-
-  ефылы:
-    build:
-      context: ./tasks
-      dockerfile: ./DevDockerfile
-    container_name: evanli-tasks-dev
-    image: eshurupov/evanli-tasks:1.0-dev
-    depends_on:
-      - evanli-postgres
-    networks:
-      - backend
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://evanli-postgres:5432/evanli
-      SPRING_DATASOURCE_USERNAME: evanliuser
-      SPRING_DATASOURCE_PASSWORD: evanlipassword
-      LIQUIBASE_URL: jdbc:postgresql://evanli-postgres:5432/evanli
-      LIQUIBASE_USER: evanliuser
-      LIQUIBASE_PASSWORD: evanlipassword
-      AUTH_SERVER: http://users:8001/api/profile
-    ports:
-      - 8003:8003
-      - 5003:5003
     volumes:
       - "./tasks/target:/opt/project"
 
 #  balancer:
 #    build:
 #      context: ./balancer
-#    container_name: evanli-balancer
+#    container_name: bp-balancer
 #    image: balancer:1.0
 #    depends_on:
 #      - users

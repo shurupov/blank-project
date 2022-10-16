@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bpconfig
+  namespace: default
+data:
+  secretword: secretword from k8s secret
+  bp_db_username: bpuser
+  bp_db_password: bppassword
+  bp_db_database: bp
+  bp_db_jdbcurl: jdbc:postgresql://bp-postgres.default.svc.cluster.local:5432/bp
+  jwt_secret: 5Nt0$51Xi6u@
+  bp_host: http://146.185.243.90

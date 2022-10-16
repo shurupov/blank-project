@@ -8,7 +8,7 @@
 		<version>2.7.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>ru.evanli.moretech</groupId>
+	<groupId>ru.shurupov.blankproject</groupId>
 	<artifactId>tasks</artifactId>
 	<version>1.0</version>
 	<name>tasks</name>

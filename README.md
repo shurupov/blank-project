@@ -1,14 +1,4 @@
-# Backend Part of EvAnLi team solution for [MoreTech Hackathon](https://moretech.vtb.ru/) in 2022
-
-## Team members:
-* [Evgeny](https://www.linkedin.com/in/evgeny-shurupov/)
-* [Anton](https://github.com/uskov-anton)
-* [Lisa](https://www.behance.net/lisasavelieva)
-
-## Backend part consists of 
-* [Users Microservice](/users)
-* [Wallets Microservice](/wallets)
-* [Tasks Microservice](/tasks)
+# Blank of any project with microservicearchitecture
 
 ## Starting microservices in docker-compose
 * Production version. To start execute `docker-compose up`  

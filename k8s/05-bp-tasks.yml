@@ -1,0 +1,85 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bp-tasks
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bp-tasks
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: bp-tasks
+    spec:
+      containers:
+        - image: eshurupov/bp-tasks:1.0
+          name: bp-tasks
+          ports:
+            - containerPort: 8003
+          env:
+            - name: JWT_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  name: bpconfig
+                  key: jwt_secret
+            - name: SPRING_DATASOURCE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: bpconfig
+                  key: bp_db_jdbcurl
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: bpconfig
+                  key: bp_db_username
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: bpconfig
+                  key: bp_db_password
+            - name: LIQUIBASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: bpconfig
+                  key: bp_db_jdbcurl
+            - name: LIQUIBASE_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: bpconfig
+                  key: bp_db_username
+            - name: LIQUIBASE_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: bpconfig
+                  key: bp_db_password
+            - name: CUSTOM_SWAGGER_SERVER_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: bpconfig
+                  key: bp_host
+            - name: AUTH_SERVER
+              value: http://bp-users.default.svc.cluster.local/api/profile
+
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bp-tasks
+  namespace: default
+spec:
+  ports:
+    - port: 80
+      targetPort: 8002
+  selector:
+    app: bp-tasks
+  type: ClusterIP
