@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.shurupov.blankproject.tasks.repository.TaskRepository;
 import ru.shurupov.blankproject.tasks.domain.Task;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service
@@ -21,8 +22,7 @@ public class TaskService {
 
     @Transactional
     public Task getById(Long id) {
-        return taskRepository.getReferenceById(id);
-
+        return taskRepository.findById(id).orElseThrow(EntityNotFoundException::new);
     }
 
 }

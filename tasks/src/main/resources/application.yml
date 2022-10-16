@@ -1,6 +1,6 @@
 
 server:
-  port: 8003
+  port: 8002
 
 jwt:
   expirationMs: 76300000
