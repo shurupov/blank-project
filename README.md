@@ -1,7 +1,9 @@
 # Blank of any project with microservicearchitecture
 
 ## Starting microservices in docker-compose
-* Production version. To start execute `docker-compose up`  
+* Production version with built images. To start execute `docker-compose up`  
+
+* Production version with building images from source codes. To start execute `docker-compose --file docker-compose-build.yml up`  
   
 * Development version. To start execute `docker-compose --file docker-compose-dev.yml up`
 

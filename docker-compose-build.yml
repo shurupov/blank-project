@@ -1,0 +1,70 @@
+version: "3"
+services:
+  bp-postgres:
+    container_name: bp-postgres
+    image: library/postgres:14.5
+    environment:
+      POSTGRES_USER: bpuser
+      POSTGRES_PASSWORD: bppassword
+      POSTGRES_DB: bp
+    networks:
+      - backend
+    ports:
+      - 5432:5432
+
+  users:
+    build:
+      context: ./users
+    container_name: bp-users
+    image: eshurupov/bp-users:1.0
+    depends_on:
+      - bp-postgres
+    networks:
+      - backend
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://bp-postgres:5432/bp
+      SPRING_DATASOURCE_USERNAME: bpuser
+      SPRING_DATASOURCE_PASSWORD: bppassword
+      LIQUIBASE_URL: jdbc:postgresql://bp-postgres:5432/bp
+      LIQUIBASE_USER: bpuser
+      LIQUIBASE_PASSWORD: bppassword
+      CUSTOM_SWAGGER_SERVER_URL: http://localhost
+    ports:
+      - 8001:8001
+
+  tasks:
+    build:
+      context: ./tasks
+    container_name: bp-tasks
+    image: eshurupov/bp-tasks:1.0
+    depends_on:
+      - bp-postgres
+    networks:
+      - backend
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://bp-postgres:5432/bp
+      SPRING_DATASOURCE_USERNAME: bpuser
+      SPRING_DATASOURCE_PASSWORD: bppassword
+      LIQUIBASE_URL: jdbc:postgresql://bp-postgres:5432/bp
+      LIQUIBASE_USER: bpuser
+      LIQUIBASE_PASSWORD: bppassword
+      AUTH_SERVER: http://bp-users:8001/api/profile
+      CUSTOM_SWAGGER_SERVER_URL: http://localhost
+    ports:
+      - 8002:8002
+
+  balancer:
+    build:
+      context: ./balancer
+    container_name: bp-balancer
+    image: eshurupov/bp-balancer:1.0
+    depends_on:
+      - users
+      - tasks
+    ports:
+      - 80:80
+    networks:
+      - backend
+
+networks:
+  backend:
