@@ -32,4 +32,13 @@ liquibase:
   user: bpuser
   password: bppassword
 
-springdoc.api-docs.path: /users/api-docs
+springdoc:
+  api-docs.path: /users/api-docs
+  swagger-ui:
+    urls:
+      - name: users
+        url: /users/api-docs
+        display-name: Пользователи и аутентификация
+      - name: tasks
+        url: /tasks/api-docs
+        display-name: Задания

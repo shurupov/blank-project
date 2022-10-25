@@ -33,7 +33,7 @@ public class OpenApiConfig {
             )
             .addServersItem(new Server().url(serverUrl))
             .info(new Info()
-                .title("Сервис маркетплейса")
+                .title("Сервис заданий")
                 .version("1.0")
             );
     }
