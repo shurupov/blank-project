@@ -59,19 +59,18 @@ services:
     volumes:
       - "./tasks/target:/opt/project"
 
-#  balancer:
-#    build:
-#      context: ./balancer
-#    container_name: bp-balancer
-#    image: balancer:1.0
-#    depends_on:
-#      - users
-#      - wallets
-#      - tasks
-#    ports:
-#      - 80:80
-#    networks:
-#      - backend
+  balancer:
+    build:
+      context: ./balancer
+    container_name: bp-balancer
+    image: eshurupov/bp-balancer:1.0
+    depends_on:
+      - users
+      - tasks
+    ports:
+      - 80:80
+    networks:
+      - backend
 
 networks:
   backend:
