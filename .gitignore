@@ -33,3 +33,5 @@ build/
 .vscode/
 
 kubernetes-cluster-*.yaml
+
+node_modules/
