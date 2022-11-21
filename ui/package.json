@@ -1,5 +1,5 @@
 {
-  "name": "joint-purchase-ui",
+  "name": "blank-project-ui",
   "version": "1.0.0",
   "scripts": {
     "start": "webpack serve --config webpack.dev.config.ts",

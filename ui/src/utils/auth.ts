@@ -24,7 +24,7 @@ export function* extendedFetch(url: string, method = "GET", body: any = undefine
 }
 
 export function* loginFetch(authRequest: AuthRequest): any {
-    return yield call(extendedFetch, "/authenticate", "POST", authRequest);
+    return yield call(extendedFetch, "/api/auth/signin", "POST", authRequest);
 }
 
 export function* authenticatedFetch(url: string, method = "GET", body: any = undefined): any {

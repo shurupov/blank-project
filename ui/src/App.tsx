@@ -5,12 +5,11 @@ import {Provider} from "react-redux";
 import {store, history} from "./store/store";
 import {ConnectedRouter} from "connected-react-router";
 import {CustomContent} from "./components/customContent/CustomContent";
-import {ConnectedLeftMenu} from "./components/leftMenu/ConnectedLeftMenu";
 import "./utils/app.css";
 import {ConnectedTopMenu} from "./components/topMenu/ConnectedTopMenu";
 import {ConnectedBreadCrumbs} from "./components/breadcrumbs/ConnectedBreadCrumbs";
 
-const { Content, Sider } = Layout;
+const { Content } = Layout;
 
 export const App = () => (
     <Provider store={store}>
@@ -18,9 +17,6 @@ export const App = () => (
             <Layout>
                 <ConnectedTopMenu />
                 <Layout>
-                    <Sider width={200} className="site-layout-background">
-                        <ConnectedLeftMenu />
-                    </Sider>
                     <Layout style={{ padding: '0 24px 24px' }}>
                         <ConnectedBreadCrumbs />
                         <Content
