@@ -16,8 +16,8 @@ services:
     build:
       context: ./users
       dockerfile: ./DevDockerfile
-    container_name: bp-users-dev
-    image: eshurupov/bp-users:1.0-dev
+    container_name: bp-users
+    image: eshurupov/bp-users:dev
     depends_on:
       - bp-postgres
     networks:
@@ -39,8 +39,8 @@ services:
     build:
       context: ./tasks
       dockerfile: ./DevDockerfile
-    container_name: bp-tasks-dev
-    image: eshurupov/bp-tasks:1.0-dev
+    container_name: bp-tasks
+    image: eshurupov/bp-tasks:dev
     depends_on:
       - bp-postgres
     networks:
@@ -60,8 +60,6 @@ services:
       - "./tasks/target:/opt/project"
 
   balancer:
-    build:
-      context: ./balancer
     container_name: bp-balancer
     image: eshurupov/bp-balancer:1.0
     depends_on:

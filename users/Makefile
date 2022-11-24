@@ -1,6 +1,6 @@
 
 docker-build:
-	docker build -t eshurupov/bp-users:1.1 -t eshurupov/bp-users:latest .
+	docker build -t eshurupov/bp-users:1.2 -t eshurupov/bp-users:latest .
 
 docker-login:
 	docker login

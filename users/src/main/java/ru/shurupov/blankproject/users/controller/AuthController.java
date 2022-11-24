@@ -22,7 +22,6 @@ import ru.shurupov.blankproject.users.service.UserService;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
@@ -34,7 +33,7 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/signin")
-    public ResponseEntity<?> authenticate(LoginRequest loginRequest) {
+    public ResponseEntity<?> authenticate(@RequestBody LoginRequest loginRequest) {
 
         Authentication authentication = authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword())
@@ -48,14 +47,19 @@ public class AuthController {
             .stream().map(GrantedAuthority::getAuthority)
             .collect(Collectors.toList());
 
-        return ResponseEntity.ok(new JwtResponse(jwt,
-            userDetails.getId(),
-            userDetails.getUsername(),
-            userDetails.getPosition(), roles));
+        return ResponseEntity.ok(
+            new JwtResponse(
+                jwt,
+                userDetails.getId(),
+                userDetails.getUsername(),
+                userDetails.getPosition(),
+                roles
+            )
+        );
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> register(SignupRequest signUpRequest) {
+    public ResponseEntity<?> register(@RequestBody SignupRequest signUpRequest) {
 
         if (userService.existsByUsername(signUpRequest.getUsername())) {
 

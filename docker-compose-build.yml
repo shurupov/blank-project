@@ -16,7 +16,7 @@ services:
     build:
       context: ./users
     container_name: bp-users
-    image: eshurupov/bp-users:1.0
+    image: eshurupov/bp-users:1.2
     depends_on:
       - bp-postgres
     networks:
