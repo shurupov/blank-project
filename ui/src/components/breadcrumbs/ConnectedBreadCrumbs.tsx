@@ -3,10 +3,8 @@ import {Breadcrumbs} from "./BreadCrumbs";
 
 const mapStateToProps = (storeState: any) => {
     return {
-        purchaseName: storeState.purchase.name,
-        purchaseId: storeState.purchase.id,
-        productName: storeState.product.name,
-        productId: storeState.product.id,
+        taskName: storeState.task.name,
+        taskId: storeState.task.id,
     }
 };
 

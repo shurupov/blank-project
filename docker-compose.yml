@@ -32,7 +32,7 @@ services:
 
   tasks:
     container_name: bp-tasks
-    image: eshurupov/bp-tasks:1.0
+    image: eshurupov/bp-tasks:1.1
     depends_on:
       - bp-postgres
     networks:

@@ -1,32 +1,27 @@
 import {put, takeEvery, select} from "redux-saga/effects";
 import {sagaActionTypes} from "../../store/sagaActionTypes";
-import {purchasesListAction} from "../purchasesList/saga";
+import {tasksListAction} from "../tasksList/saga";
 import {logout} from "../../utils/auth";
-import {purchaseDisplayAction} from "../purchase/saga";
-import {productsListAction} from "../productList/saga";
-import {productDisplayAction} from "../product/saga";
+import {taskDisplayAction} from "../task/saga";
 
 export const pathSelector = (state: any) => state.router.location.pathname;
-export const purchaseIdSelector = (state: any) => state.purchase.id;
+export const taskIdSelector = (state: any) => state.purchase.id;
 
 export function* workerLocationChange(): any {
     const url = yield select(pathSelector);
-    if (url == "/purchases") {
-        yield put(purchasesListAction());
-    } else if (/^\/purchases\/\d+$/.test(url)) {
-        const result = url.match(/^\/purchases\/(\d+)$/);
+    if (url == "/tasks") {
+        yield put(tasksListAction());
+    } else if (/^\/tasks\/\d+$/.test(url)) {
+        const result = url.match(/^\/tasks\/(\d+)$/);
         const purchaseId = result[1];
-        yield put(purchaseDisplayAction(purchaseId));
-        yield put(productsListAction(purchaseId));
-    } else if (/^\/purchases\/\d+\/products\/\d+$/.test(url)) {
-        const result = url.match(/^\/purchases\/(\d+)\/products\/(\d+)$/);
-        const storedPurchaseId = yield select(purchaseIdSelector);
-        const purchaseId = result[1];
-        const productId = result[2];
-        if (purchaseId != storedPurchaseId) {
-            yield put(purchaseDisplayAction(purchaseId));
+        yield put(taskDisplayAction(purchaseId));
+    } else if (/^\/tasks\/\d+$/.test(url)) {
+        const result = url.match(/^\/tasks\/(\d+)$/);
+        const storedTaskId = yield select(taskIdSelector);
+        const taskId = result[1];
+        if (taskId != storedTaskId) {
+            yield put(taskDisplayAction(taskId));
         }
-        yield put(productDisplayAction(purchaseId, productId));
     } else if (url == "/logout") {
         console.log("/logout")
         logout();

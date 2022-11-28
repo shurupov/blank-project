@@ -1,6 +1,6 @@
 
 docker-build:
-	docker build -t eshurupov/bp-tasks:1.0 -t eshurupov/bp-tasks:latest .
+	docker build -t eshurupov/bp-tasks:1.1 -t eshurupov/bp-tasks:latest .
 
 docker-login:
 	docker login

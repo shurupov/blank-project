@@ -1,18 +1,14 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {ProductProps} from "./Product";
+import {TaskProps} from "./Task";
 
-export const productSlice = createSlice({
-    name: "product",
+export const taskSlice = createSlice({
+    name: "task",
     initialState: {
         id: 0,
         name: "",
-        price: 0,
         description: "",
         createdAt: "",
-        optionName: "",
-        options: [],
-        properties: {}
-    } as ProductProps,
+    } as TaskProps,
     reducers: {
         display: (state, action) => {
             return {

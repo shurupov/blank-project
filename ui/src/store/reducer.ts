@@ -1,14 +1,10 @@
 import {combineReducers} from "redux";
 import {connectRouter} from "connected-react-router";
-import {purchasesListSlice} from "../components/purchasesList/slice";
-import {purchaseSlice} from "../components/purchase/slice";
-import {productsListSlice} from "../components/productList/slice";
-import {productSlice} from "../components/product/slice";
+import {tasksListSlice} from "../components/tasksList/slice";
+import {taskSlice} from "../components/task/slice";
 
 export const createRootReducer = (history: any) => combineReducers({
     router: connectRouter(history),
-    purchasesList: purchasesListSlice.reducer,
-    purchase: purchaseSlice.reducer,
-    products: productsListSlice.reducer,
-    product: productSlice.reducer,
+    purchasesList: tasksListSlice.reducer,
+    purchase: taskSlice.reducer,
 });

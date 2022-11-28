@@ -1,7 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-export const purchasesListSlice = createSlice({
-    name: "purchasesList",
+export const tasksListSlice = createSlice({
+    name: "tasksList",
     initialState: {
         list: [],
     },

@@ -7,7 +7,6 @@ import {ConnectedRouter} from "connected-react-router";
 import {CustomContent} from "./components/customContent/CustomContent";
 import "./utils/app.css";
 import {ConnectedTopMenu} from "./components/topMenu/ConnectedTopMenu";
-import {ConnectedBreadCrumbs} from "./components/breadcrumbs/ConnectedBreadCrumbs";
 
 const { Content } = Layout;
 
@@ -18,7 +17,7 @@ export const App = () => (
                 <ConnectedTopMenu />
                 <Layout>
                     <Layout style={{ padding: '0 24px 24px' }}>
-                        <ConnectedBreadCrumbs />
+                        {/*<ConnectedBreadCrumbs />*/}
                         <Content
                             className="site-layout-background"
                             style={{
