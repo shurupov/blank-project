@@ -18,6 +18,9 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import ru.shurupov.blankproject.users.filter.AuthTokenFilter;
 import ru.shurupov.blankproject.users.service.AuthEntryPointJwt;
 
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
 import java.util.List;
 
 @Configuration
@@ -66,6 +69,7 @@ public class WebSecurityConfig {
         configuration.setAllowedOrigins(List.of("http://0.0.0.0:4000", "http://localhost:8001", "http://localhost"));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
         configuration.setAllowedHeaders(List.of("*"));
+        configuration.setMaxAge(Duration.of(30, ChronoUnit.SECONDS));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
