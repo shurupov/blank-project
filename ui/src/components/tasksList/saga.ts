@@ -1,7 +1,7 @@
 import {call, put, takeEvery} from "redux-saga/effects";
 import {sagaActionTypes} from "../../store/sagaActionTypes";
 import {tasksListSlice} from "./slice";
-import {authenticatedFetch} from "../../utils/auth";
+import {extendedFetch} from "../../utils/auth";
 import {processException} from "../../utils/processException";
 
 export const tasksListAction = () => {
@@ -12,8 +12,8 @@ export const tasksListAction = () => {
 
 export function* workerTasksList(): any {
     try {
-        const tasks = yield call(authenticatedFetch, "/api/tasks");
-        yield put(tasksListSlice.actions.list(tasks._embedded.tasks));
+        const tasks = yield call(extendedFetch, "/api/tasks");
+        yield put(tasksListSlice.actions.list(tasks));
     } catch (e) {
         processException(e);
     }

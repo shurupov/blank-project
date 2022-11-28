@@ -61,7 +61,7 @@ services:
 
   balancer:
     container_name: bp-balancer
-    image: eshurupov/bp-balancer:1.0
+    image: eshurupov/bp-balancer:1.1
     depends_on:
       - users
       - tasks

@@ -36,7 +36,7 @@ services:
     build:
       context: ./tasks
     container_name: bp-tasks
-    image: eshurupov/bp-tasks:1.1
+    image: eshurupov/bp-tasks:1.2
     depends_on:
       - bp-postgres
     networks:
@@ -57,7 +57,7 @@ services:
     build:
       context: ./balancer
     container_name: bp-balancer
-    image: eshurupov/bp-balancer:1.0
+    image: eshurupov/bp-balancer:1.1
     depends_on:
       - users
       - tasks

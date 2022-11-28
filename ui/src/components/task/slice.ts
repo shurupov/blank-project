@@ -5,9 +5,9 @@ export const taskSlice = createSlice({
     name: "task",
     initialState: {
         id: 0,
-        name: "",
-        description: "",
-        createdAt: "",
+        title: "",
+        content: "",
+        award: "",
     } as TaskProps,
     reducers: {
         display: (state, action) => {

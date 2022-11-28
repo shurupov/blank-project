@@ -5,15 +5,18 @@ import {ConnectedTasksList} from "../tasksList/ConnectedTasksList";
 
 export interface TaskProps {
     id: number;
-    name: string;
-    description: string;
-    createdAt: string;
+    title: string;
+    content: string;
+    award: string;
 }
 
 export const Task = (props: TaskProps) => {
     return <>
-        <Title>{props.name}</Title>
-        <Paragraph>{props.description}</Paragraph>
+        <Title>{props.title}</Title>
+        <Paragraph>{props.content}</Paragraph>
+        <br/>
+        <br/>
+        <br/>
         <ConnectedTasksList />
     </>;
 }

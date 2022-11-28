@@ -5,6 +5,6 @@ import {taskSlice} from "../components/task/slice";
 
 export const createRootReducer = (history: any) => combineReducers({
     router: connectRouter(history),
-    purchasesList: tasksListSlice.reducer,
-    purchase: taskSlice.reducer,
+    tasksList: tasksListSlice.reducer,
+    task: taskSlice.reducer,
 });
