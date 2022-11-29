@@ -4,7 +4,7 @@ import {switchMenuItem} from "../../utils/switchMenuItem";
 
 const mapStateToProps = (storeState: any) => {
     return {
-        selected: switchMenuItem(["/purchases", "/auth"], storeState.router.location.pathname)
+        selected: switchMenuItem(["/tasks", "/auth"], storeState.router.location.pathname)
     }
 };
 

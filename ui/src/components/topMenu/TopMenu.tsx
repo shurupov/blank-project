@@ -13,7 +13,7 @@ interface TopMenuProps {
 export const TopMenu = (props: TopMenuProps) => {
     return <Header className="header">
         <Menu theme="dark" mode="horizontal" selectedKeys={[props.selected]}>
-            <Menu.Item key="/purchases"><Link to={"/purchases"}>Закупки</Link></Menu.Item>
+            <Menu.Item key="/tasks"><Link to={"/tasks"}>Задания</Link></Menu.Item>
             {
                 authenticated()
                     ? <Menu.Item key="/logout" icon={<UserOutlined/>}><Link to={"/logout"}>Logout</Link></Menu.Item>

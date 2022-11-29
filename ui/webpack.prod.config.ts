@@ -65,7 +65,7 @@ const config: webpack.Configuration = {
         new webpack.DefinePlugin({
             SERVICE_URL: JSON.stringify(""),
             "process.env": {
-                "service": JSON.stringify("/core")
+                "service": JSON.stringify("")
             }
         }),
     ],

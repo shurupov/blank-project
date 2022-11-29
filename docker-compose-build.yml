@@ -53,11 +53,21 @@ services:
     ports:
       - 8002:8002
 
+  ui:
+    build:
+      context: ./ui
+    container_name: bp-ui
+    image: eshurupov/bp-ui:1.0
+    ports:
+      - 9000:9000
+    networks:
+      - backend
+
   balancer:
     build:
       context: ./balancer
     container_name: bp-balancer
-    image: eshurupov/bp-balancer:1.1
+    image: eshurupov/bp-balancer:1.2
     depends_on:
       - users
       - tasks

@@ -13,4 +13,4 @@ RUN mkdir -p $PROJECT_DIR
 WORKDIR $PROJECT_DIR
 ADD default.conf /etc/nginx/conf.d/
 COPY --from=0 $PROJECT_DIR/build/* /usr/share/nginx/html/
-EXPOSE 80
+EXPOSE 9000

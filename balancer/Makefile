@@ -1,6 +1,6 @@
 
 docker-build:
-	docker build -t eshurupov/bp-balancer:1.1 -t eshurupov/bp-balancer:latest .
+	docker build -t eshurupov/bp-balancer:1.2 -t eshurupov/bp-balancer:latest .
 
 docker-login:
 	docker login
